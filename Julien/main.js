@@ -1,30 +1,22 @@
-/* -- main.ls
+/* -- main.jjs
 
 Base script for Jozay OS - Leek IA
 */
 
 // Includes
-include('Helpers/weapons.ls');
+include('Helpers/weapons.js');
+include('Helpers/movement.js');
 
 // Choose weapon
 var weapon = WEAPON_DOUBLE_GUN;
+var tp_cost = getWeaponCost(weapon);
+var weaponMinRange = getWeaponMinRange(weapon);
 
 pickWeapon(weapon);
-var weaponRange = getWeaponMinRange(weapon);
 
-// Placement
+// Manage movement
 var enemy = getNearestEnemy();
-
-// Keep enemy at range
-var distanceToTarget = getDistance(getCell(), getCell(enemy));
-var remainingMP = getMP();
-
-if ((distanceToTarget - remainingMP) > weaponRange){
-	moveToward(enemy);
-}
-else {
-	moveAwayFrom(enemy);
-}
+moveToShoot(enemy, weaponMinRange);
 
 // Shoot with everything left
-alphaStrike(enemy);
+alphaStrike(enemy, tp_cost);
