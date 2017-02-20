@@ -7,12 +7,24 @@ Base script for Jozay OS - Leek IA
 include('Helpers/weapons.ls');
 
 // Choose weapon
-pickWeapon(WEAPON_DOUBLE_GUN);
+var weapon = WEAPON_DOUBLE_GUN;
+
+pickWeapon(weapon);
+var weaponRange = getWeaponMinRange(weapon);
 
 // Placement
 var enemy = getNearestEnemy();
-moveToward(enemy);
+
+// Keep enemy at range
+var distanceToTarget = getDistance(getCell(), getCell(enemy));
+var remainingMP = getMP();
+
+if ((distanceToTarget - remainingMP) > weaponRange){
+	moveToward(enemy);
+}
+else {
+	moveAwayFrom(enemy);
+}
 
 // Shoot with everything left
 alphaStrike(enemy);
-
