@@ -12,27 +12,28 @@ include('Helpers/chips.js');
 var WEAPON = WEAPON_DOUBLE_GUN;
 var HEAL_CHIP = CHIP_CURE;
 var SHIELD_CHIP = CHIP_SHIELD;
+var HEAL_THRESHOLD = 75;
 
 // Leeks
 var myself = getLeek();
+var target = getNearestEnemy();
 
 // Manage weapons
 var tp_cost = getWeaponCost(WEAPON);
 var weaponMinRange = getWeaponMinRange(WEAPON);
 
-pickWeapon(WEAPON);
+WPN_pickWeapon(WEAPON);
 
 // Manage movement
-var target = getNearestEnemy();
 var myCell = getCell();
 var targetCell = getCell(target);
 var distanteToTarget = getDistance(myCell, targetCell);
 
-moveToShoot(target, weaponMinRange);
+MVT_moveToShoot(target, weaponMinRange);
 
 // Manage chips
-useShieldSolo(SHIELD_CHIP, distanteToTarget, myself);
-useHealSolo(HEAL_CHIP, myself);
+CHP_useShieldSolo(SHIELD_CHIP, distanteToTarget, myself);
+CHP_useHealSolo(HEAL_CHIP, HEAL_THRESHOLD, myself);
 
 // Shoot with everything left
-alphaStrike(target, tp_cost);
+WPN_alphaStrike(target, tp_cost);

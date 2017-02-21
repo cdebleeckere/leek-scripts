@@ -1,15 +1,15 @@
-/* -- weapons.ls
+/* -- weapons.js
 
 Helpers function for weapon management
 */
 
 /*
-Equip a weapon only if you don't have it already (save 1PT).
+Equip a weapon only if you don't have it already (save 1 TP).
 
 Args :
-  weapon : weapon to equip.
+    * weapon: weapon to equip.
 */
-function pickWeapon(weapon) {
+function WPN_pickWeapon(weapon) {
 
     if( getWeapon() != weapon ) {
         setWeapon(weapon);
@@ -20,10 +20,10 @@ function pickWeapon(weapon) {
 Shoot with all TP left.
 
 Args :
-  target : enemy leek you want to transform into a punch card.
+    * target: enemy leek you want to transform into a punch card.
 */
-function alphaStrike(target) {
-	for (var tp = getTP(); tp > 0; tp--) {
+function WPN_alphaStrike(target, cost) {
+	for (var tp = getTP(); tp > cost; tp--) {
 		useWeapon(target);
 	}
 }

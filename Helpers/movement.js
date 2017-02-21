@@ -3,7 +3,14 @@
 Helpers function for movements.
 */
 
-function moveToShoot(target, weaponMinRange) {
+/*
+Move step by step to keep target at range (at least minimum weapon range)
+
+Args:
+    * target: enemy leek
+	* weaponMinRange : minimum range for current weapon usage
+*/
+function MVT_moveToShoot(target, weaponMinRange) {
 
 	var remaining_mp = getMP();
 
