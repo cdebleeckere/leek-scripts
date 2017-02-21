@@ -24,4 +24,6 @@ function MVT_moveToShoot(target, weaponMinRange) {
 		}
 		remaining_mp--;
 	}
+
+	return canUseWeapon(target);
 }

@@ -12,7 +12,7 @@ Args:
 	* leek: leek upon which chip will be used
 */
 function CHP_useShieldSolo(shield_chip, distanceToTarget, leek){
-	if(distanceToTarget < 8 and getChipCooldown(shield_chip) <= 0) {
+	if(distanceToTarget < 8 and getCooldown(shield_chip) == 0) {
 		useChip(shield_chip, leek);
 	}
 }
@@ -27,7 +27,7 @@ Args:
 */
 function CHP_useHealSolo(heal_chip, heal_threshold, leek) {
 	var percentOfLife = (getLife() / getTotalLife()) * 100;
-	if (percentOfLife <= heal_threshold and getChipCooldown(heal_chip) <= 0){
+	if (percentOfLife <= heal_threshold and getCooldown(heal_chip) == 0){
 		useChip(heal_chip, leek);
 	}
 }
