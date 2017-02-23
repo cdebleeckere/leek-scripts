@@ -49,3 +49,42 @@ function WPN_alphaStrike(target, cost) {
 		useWeapon(target);
 	}
 }
+
+/*
+Equip a leek with the first weapon it can use
+
+Args :
+	* arr_order_weapon : list of weapon by preference
+	* enemy : leek enemy
+
+Return :
+	* arr_selected_weapon : tab contains weapon selected, cost of the weapon and number of tp used
+*/
+function WPN_selectWeapon(arrOrderWeapon,enemy){
+	//Count the number of element
+	var nbWeapon = count(arrOrderWeapon);
+	var arrSelectedWeapon = [];
+	var tpUsed = 0;
+	
+	
+	while(nbWeapon != 0){
+		var currentWeapon = arrOrderWeapon[0];
+		
+		//If we can use the current weapon
+		if(canUseWeapon(currentWeapon,enemy) == true){
+			//if you don't have it already
+			if(getWeapon() != currentWeapon){// 1 TP
+				setWeapon(currentWeapon);
+				tpUsed = 1;
+			}		
+			
+			arrSelectedWeapon = [currentWeapon,getWeaponCost(currentWeapon),tpUsed];
+			
+			return arrSelectedWeapon;
+		}
+		
+		nbWeapon --;
+	}
+	
+	return arrSelectedWeapon;
+}
